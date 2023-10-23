@@ -1,0 +1,41 @@
+﻿<Window x:Class="kurs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kurs"
+        mc:Ignorable="d"
+      Title="Работы" Height="642" Width="1000" WindowStartupLocation="CenterScreen">
+    <Grid Background="#A8E4A0" Height="628" VerticalAlignment="Top">
+        <Border MinWidth="800" Margin="15,0,15,0" Background="White" VerticalAlignment="Center" Padding="30"
+                MaxWidth="1400" CornerRadius="20" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="10"/>
+            </Border.Effect>
+            <StackPanel>
+                <Grid Margin="0 0 0 20">
+                    <DataGrid  CanUserAddRows="False" IsReadOnly="True" Height="345" Name="UserDGrid" AutoGenerateColumns="False" ColumnWidth="*" Style="{StaticResource MaterialDesignDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Ф.И.О.">
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="Users.Fname" />
+                                        <Binding Path="Users.Sname" />
+                                        <Binding Path="Users.Mname" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding DatePasses, StringFormat='dd.MM.yyyy'}"/>
+                            <DataGridTextColumn Header="Вопрос" Binding="{Binding Tests.Question}"/>
+                            <DataGridTextColumn Header="Ответ испытуемого" Binding="{Binding UserResponse}"/>
+                            <DataGridTextColumn Header="Верный ответ" Binding="{Binding Tests.RightAnswer}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="60" Margin="20">
+                    <Button Content="Назад" Name="BackBtn" Click="BackBtn_Click" Width="150" Height="40"  Margin=" 50 5" Style="{StaticResource MaterialDesignPaperButton}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
